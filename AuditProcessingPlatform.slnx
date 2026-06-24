@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Audit.Api/Audit.Api.csproj" />
+    <Project Path="src/Audit.Worker/Audit.Worker.csproj" />
+  </Folder>
+</Solution>
