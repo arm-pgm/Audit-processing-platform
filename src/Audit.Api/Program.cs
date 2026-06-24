@@ -1,8 +1,12 @@
+using Audit.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IAuditJobService, AuditJobService>();
 
 var app = builder.Build();
 
@@ -32,6 +36,12 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+app.MapPost("/audit-jobs", (IAuditJobService auditJobService) =>
+{
+    var result = auditJobService.CreateJob("api");
+    return Results.Ok(new {message = result});
+});
 
 app.Run();
 
