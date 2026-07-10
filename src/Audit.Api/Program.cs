@@ -1,4 +1,7 @@
 using Audit.Api.Services;
+using Audit.Api.Data;
+using Microsoft.EntityFrameworkCore;
+using Audit.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<IAuditJobService, AuditJobService>();
+builder.Services.AddDbContext<AuditDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("AuditDatabase")));
+builder.Services.AddScoped<IJobRepository, JobRepository>();
 
 var app = builder.Build();
 
