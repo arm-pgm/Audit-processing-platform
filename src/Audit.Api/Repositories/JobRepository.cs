@@ -43,10 +43,7 @@ public class JobRepository : IJobRepository
     public async Task UpdateAsync(Job job)
     {
         job.UpdatedUtc = DateTime.UtcNow;
-
-        _db.Jobs.Update(job);
         await _db.SaveChangesAsync();
-
     }
 
 }
