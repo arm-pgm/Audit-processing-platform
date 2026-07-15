@@ -18,3 +18,8 @@ Thumbs.db
 
 # Journal files
 Notes.md  
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
